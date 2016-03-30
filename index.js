@@ -238,12 +238,12 @@ Weixin.prototype.parseEventMsg = function() {
     eventKey = this.data.EventKey[0];
   }
   var type = this.data.Event[0];
-  var msg = null;
+  var msg = {};
   switch(type){
     case 'subscribe':
     case 'unsubscribe':
     case 'CLICK':
-      var msg = {
+      msg = {
       "toUserName" : this.data.ToUserName[0],
       "fromUserName" : this.data.FromUserName[0],
       "createTime" : this.data.CreateTime[0],
@@ -257,7 +257,7 @@ Weixin.prototype.parseEventMsg = function() {
     break;
     //SCAN
     case 'SCAN':
-      var msg = {
+      msg = {
       "toUserName" : this.data.ToUserName[0],
       "fromUserName" : this.data.FromUserName[0],
       "createTime" : this.data.CreateTime[0],
@@ -268,7 +268,7 @@ Weixin.prototype.parseEventMsg = function() {
       }
     break;
     case 'LOCATION':
-      var msg = {
+      msg = {
       "toUserName" : this.data.ToUserName[0],
       "fromUserName" : this.data.FromUserName[0],
       "createTime" : this.data.CreateTime[0],
