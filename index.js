@@ -237,14 +237,49 @@ Weixin.prototype.parseEventMsg = function() {
   if (this.data.EventKey) {
     eventKey = this.data.EventKey[0];
   }
-
-  var msg = {
-    "toUserName" : this.data.ToUserName[0],
-    "fromUserName" : this.data.FromUserName[0],
-    "createTime" : this.data.CreateTime[0],
-    "msgType" : this.data.MsgType[0],
-    "event" : this.data.Event[0],
-    "eventKey" : eventKey
+  var type = this.data.Event[0];
+  var msg = null;
+  switch(type){
+    case 'subscribe':
+    case 'unsubscribe':
+    case 'CLICK':
+      var msg = {
+      "toUserName" : this.data.ToUserName[0],
+      "fromUserName" : this.data.FromUserName[0],
+      "createTime" : this.data.CreateTime[0],
+      "msgType" : this.data.MsgType[0],
+      "event" : this.data.Event[0],
+      "eventKey" : eventKey//,
+      //"ticket":  this.data.Ticket[0]
+      }
+      if (this.data.Ticket && this.data.Ticket[0])
+        msg.ticket = this.data.Ticket[0]
+    break;
+    //SCAN
+    case 'SCAN':
+      var msg = {
+      "toUserName" : this.data.ToUserName[0],
+      "fromUserName" : this.data.FromUserName[0],
+      "createTime" : this.data.CreateTime[0],
+      "msgType" : this.data.MsgType[0],
+      "event" : this.data.Event[0],
+      "eventKey" : eventKey,
+      "ticket":  this.data.Ticket[0]
+      }
+    break;
+    case 'LOCATION':
+      var msg = {
+      "toUserName" : this.data.ToUserName[0],
+      "fromUserName" : this.data.FromUserName[0],
+      "createTime" : this.data.CreateTime[0],
+      "msgType" : this.data.MsgType[0],
+      "event" : this.data.Event[0],
+      "eventKey" : eventKey,
+      "Latitude" : this.data.Latitude[0],
+      "Longitude":  this.data.Longitude[0],
+      "Precision":  this.data.Precision[0]
+      }
+    break;
   }
 
   emitter.emit("weixinEventMsg", msg);
