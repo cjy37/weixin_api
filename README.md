@@ -2,7 +2,7 @@
 weixin-api
 ==========
 
-微信公众平台[消息接口](http://mp.weixin.qq.com/wiki/index.php?title=%E6%B6%88%E6%81%AF%E6%8E%A5%E5%8F%A3%E6%8C%87%E5%8D%97)的Node.js实现。
+微信公众平台[消息接口](http://mp.weixin.qq.com/wiki/index.php?title=%E6%B6%88%E6%81%AF%E6%8E%A5%E5%8F%A3%E6%8C%87%E5%8D%97)的Koa.js(Node.js)实现。
 
 Important!
 ===========
@@ -191,10 +191,10 @@ weixin.eventMsg(function(msg) {
 });
 
 // Start
-app.post('/', function(req, res) {
+app.post('/', function*() {
 
   // loop
-  weixin.loop(req, res);
+  weixin.loop(this.req, this.response);
 
 });
 
