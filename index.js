@@ -269,8 +269,8 @@ Weixin.prototype.sendTextMsg = function(msg) {
      "<FuncFlag>" + funcFlag + "</FuncFlag>" +
   "</xml>";
 
-  this.res.type('xml');
-  this.res.send(output);
+  this.res.type = 'xml';
+  this.res.body = output;
 
   return this;
 }
@@ -296,8 +296,8 @@ Weixin.prototype.sendMusicMsg = function(msg) {
      "<FuncFlag>" + funcFlag + "</FuncFlag>" +
   "</xml>";
 
-  this.res.type('xml');
-  this.res.send(output);
+  this.res.type = ('xml');
+  this.res.body = (output);
 
   return this;
 }
@@ -330,8 +330,8 @@ Weixin.prototype.sendNewsMsg = function(msg) {
      "<FuncFlag>" + funcFlag + "</FuncFlag>" +
   "</xml>";
 
-  this.res.type('xml');
-  this.res.send(output);
+  this.res.type = ('xml');
+  this.res.body = (output);
 
   return this;
 }
